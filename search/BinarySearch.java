@@ -1,6 +1,9 @@
 import java.util.*;
 import java.util.stream.*;
 
+/**
+* Performance of Binary search O(log(n))
+*/
 public class BinarySearch {
 
 	public static void main(String[] args) {
@@ -38,15 +41,29 @@ public class BinarySearch {
 		int end = given.length-1;
 		int mid;
 		
+		// Handling edge case scenorio
+		// what if the length of the array is  0?
+		if(given.length<=0) return -1;
+
+		// what if the length of the array is 1 ?
+		if(given.length==1){
+		
+			if(given[0]==search) return 0;
+			else return -1;
+		}
+
 		while(start<=end) {
 
 			mid = (start+end)/2;
 			
 			if(given[mid] > search) {
+
 				end = mid -1;
 			} else if (given[mid] < search ) {
+
 				start = mid+1;
 			} else {
+
 				return mid;
 			}
 
