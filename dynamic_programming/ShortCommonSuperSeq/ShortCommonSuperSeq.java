@@ -2,9 +2,7 @@ import java.util.*;
 import java.util.stream.*;
 
 /**
- * This isn't the right approach
- * I did not understand the problem right. But the code is doing what I have expected it to do.
- * So need to rework on why the problem is different, with pleasent mind
+ * Shortest Common Super String
  */
 public class ShortCommonSuperSeq {
 
@@ -12,6 +10,8 @@ public class ShortCommonSuperSeq {
         
         String s1 = "abcdz";
         String s2 = "bdcf";
+
+	// The result string would be "abcdzbdcf"
 
         System.out.println("s1 -> " + s1);
         System.out.println("s2 -> " + s2);
@@ -42,10 +42,10 @@ public class ShortCommonSuperSeq {
 		if(i1 == s1.length()) return s2.length()-i2;
 		if(i2 == s2.length()) return s1.length()-i1;
 
-		if(s1.charAt(i1)==s1.charAt(i2)) count = 1+ bruteForce(s1,s2, i1+1, i2+1);
+		if(s1.charAt(i1) == s2.charAt(i2)) count = 1+ bruteForce(s1,s2, i1+1, i2+1);
 		else {
-			int c1 = 1+ bruteForce(s1,s2, i1+1, i2);
-			int c2 = 1+ bruteForce(s1,s2, i1, i2+1);
+			int c1 = 1+ bruteForce(s1,s2, i1, i2+1);
+			int c2 = 1+ bruteForce(s1,s2, i1+1, i2);
 		
 			count = Math.min(c1, c2);
 		}
@@ -73,16 +73,16 @@ public class ShortCommonSuperSeq {
 
 	private static int memoization(int[][] lookupTable, String s1, String s2, int i1, int i2){
 
-		if(i1 >= s1.length()) return s2.length()-i2;
-		if(i2 >= s2.length()) return s2.length()-i1;
+		if(i1 == s1.length()) return s2.length()-i2;
+		if(i2 == s2.length()) return s1.length()-i1;
 
 		if(lookupTable[i1][i2] == 0 ){
 
 			if(s1.charAt(i1) == s2.charAt(i2)) 
-				lookupTable[i1][i2] = 1 + memoization(lookupTable, s1, s2, i1+1, i1+2);
+				lookupTable[i1][i2] = 1 + memoization(lookupTable, s1, s2, i1+1, i2+1);
 			else {
-				lookupTable[i1][i2] = Math.min(1+ memoization(lookupTable, s1, s2, i1+1, i2),
-								1 + memoization(lookupTable, s1, s2, i1, i2+1));
+				lookupTable[i1][i2] = Math.min(1+ memoization(lookupTable, s1, s2, i1, i2+1),
+								1 + memoization(lookupTable, s1, s2, i1+1, i2));
 			}
  		}
 		return lookupTable[i1][i2];
