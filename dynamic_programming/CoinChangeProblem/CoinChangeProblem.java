@@ -104,9 +104,11 @@ public class CoinChangeProblem {
 		System.out.println(Arrays.stream(lookupTable).mapToObj(String::valueOf).collect(Collectors.joining(",","{","}")));
 
 		for(int i=0; i<denomLength; i++) {
-
+		
+			System.out.println("i ->" +i);
 			for(int j=denoms[i]; j<=amount; j++) {
 
+				System.out.println("\t j ->" +j);
 				lookupTable[j] += lookupTable[j-denoms[i]];
 
 				System.out.println(Arrays.stream(lookupTable).mapToObj(String::valueOf).collect(Collectors.joining(",","{","}")));
