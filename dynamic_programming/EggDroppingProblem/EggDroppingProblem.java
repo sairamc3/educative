@@ -60,11 +60,78 @@ public class EggDroppingProblem {
 
 	public static int memoization(int floors, int eggs) {
 
-		return 0;
+		int[][] lookupTable = new int[eggs+1][floors+1];
+
+		for(int i=0; i<=eggs; i++) {
+
+			for(int j=0; j<=floors; j++) {
+				lookupTable[i][j] = 0;
+			}
+		}
+
+		return memoization(lookupTable, floors, eggs);
+		
 	}
 	
+	private static int memoization(int[][] lookupTable, int floors, int eggs) {
+
+		if(eggs <=0) return 0;
+	
+		if(floors ==0 || floors ==1) return floors;
+
+		if(eggs == 1) return floors;
+
+		lookupTable[eggs][floors] = Integer.MAX_VALUE;
+
+		for(int floor=1; floor <=floors; floor++) {
+
+			int res = 1+ Math.max(memoization(lookupTable, floor-1, eggs-1), memoization(lookupTable, floors-floor, eggs));
+			if (res < lookupTable[eggs][floors]) lookupTable[eggs][floors] = res;
+
+		}
+		return lookupTable[eggs][floors];
+	}	
+
 	public static int tabulation(int floors, int eggs) {
 
-		return 0;
+		if(eggs <=0) return 0;
+		
+		if(floors ==0 || floors ==1) return floors;
+
+		if(eggs ==1) return floors;
+
+		int[][] lookupTable = new int[eggs+1][floors+1];
+
+		//We always need one trial for one floor and zero trail for zero floors
+		for(int egg=1; egg<=eggs; egg++) {
+
+			lookupTable[egg][0] = 0;
+			lookupTable[egg][1] = 1;
+		}
+
+		//We always need trials equal to no of floors when the eggs are one
+		for(int floor=1; floor<=floors; floor++) {
+
+			lookupTable[1][floor] = floor;
+		}
+
+		for(int egg=2; egg<=eggs; egg++) {
+
+			for(int floor=2; floor<=floors; floor++) {
+
+				lookupTable[egg][floor] = Integer.MAX_VALUE;
+				
+				for(int fl=1; fl<=floor; fl++) {
+
+				
+					int res = 1 + Math.max(tabulation(fl-1, egg-1),
+							tabulation(floors-fl, egg));
+					if(res < lookupTable[egg][floor]) lookupTable[egg][floor] = res;
+				}
+			}
+		}
+
+
+		return lookupTable[eggs][floors];
 	}
 }
