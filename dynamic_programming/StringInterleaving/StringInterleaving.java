@@ -81,6 +81,9 @@ public class StringInterleaving {
 		return lookupMap.get(subProblemKey);
 	}
 
+	/**
+	 * The logic in this method is little different
+	 */
 	public static boolean tabulation(String m, String n, String p) {
 
 		boolean[][] lookupTable = new boolean[m.length()+1][n.length()+1];
