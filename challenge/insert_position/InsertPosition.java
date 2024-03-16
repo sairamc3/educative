@@ -5,7 +5,7 @@ import java.util.stream.*;
 * Find the insertion position of the key element in the array. The array is sorted and does not contain duplicated elements.
 * We modified binary search to do the job.
 * Modified the binary search by adding a varible position and keep on changing the position as we iterate through the array. 
-* /
+*/
 public class InsertPosition {
 
 	public static void main (String[] args) {
