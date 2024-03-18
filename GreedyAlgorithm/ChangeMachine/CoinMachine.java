@@ -1,6 +1,10 @@
 import java.util.*;
 import java.util.stream.*;
 
+/**
+ * This is not the optimum solution, This example is to show the approach of greedy algorithm. 
+ * The optimum solution for this problem can be obtained using dynamic programming
+ */
 public class ChangeMachine {
 
 	public static int[] coins = {25, 10, 5, 1};
