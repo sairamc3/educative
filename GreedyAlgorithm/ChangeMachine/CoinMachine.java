@@ -19,6 +19,9 @@ public class ChangeMachine {
 
 		System.out.println("Change is : " + change);
 
+		List<Integer> educativeSolution = getMinCoinsEducative(givenAmount);
+
+		System.out.println("Educative solution change is : " + educativeSolution);
 	}
 
 	/**
@@ -52,6 +55,27 @@ public class ChangeMachine {
 		}
 
 			
+		return change;
+	}
+
+	/**
+	 * Educative solution.
+	 * In this solution, instead of using a new varible sum, used the givenAmount, and reduced the amount for every coin
+	 * Every other logic is same here
+	 */
+	public static List<Integer> getMinCoinsEducative(int givenAmount) {
+
+		List<Integer> change = new ArrayList<>();
+
+		for(int i=0; i<coins.length && givenAmount>0; i++) {
+
+			while(coins[i] <= givenAmount) {
+			
+				givenAmount-=coins[i];
+				change.add(coins[i]);
+			}
+		} 
+
 		return change;
 	}
 }
