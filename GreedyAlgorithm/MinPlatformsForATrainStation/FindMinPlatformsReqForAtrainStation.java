@@ -25,6 +25,7 @@ public class FindMinPlatformReForTrainStation {
 
 	/**
 	 * BruteForce
+	 * Time complexity: O(n^2)
 	 */
 	public static int bruteForce(int[] arrival, int[] departure) {
 
@@ -66,10 +67,58 @@ public class FindMinPlatformReForTrainStation {
 		// return maxTrains, present in the station at a point of time
 		return maxTrains;
 	}
-
+	
+	/**
+	 * The idea is to consider all events in sorting order. 
+	 * We can trace the no of events at any given time 
+	 * and check the trains that have arrived but not departed.
+	 * That way we know how many platforms we need at that time. 
+	 * Take the max of all such instances.
+	 * Time Complexit: O(nlogn)
+	 */
 	public static int sorting(int[] arrival, int[] departure) {
 
-		return 0;
+		// You can take any array for the size for the total trains
+		int totalTrains = arrival.length;
+
+		// Sort both the arrays
+		Arrays.sort(arrival);
+		Arrays.sort(departure);
+
+		// Initialize count and max trains
+		int maxTrains = 1;
+		int count = 1;
+
+		// first and second train
+		int firstTrain=0;
+		int secondTrain=1;
+
+		// While the trains are less than the total trains
+		while(secondTrain < totalTrains && firstTrain < totalTrains) {
+
+			// If second train arrives before the first train leaves
+			if(arrival[secondTrain] < departure[firstTrain]) {
+
+				// Increment the counter
+				count += 1;
+
+				// Increment the second train count to compare the first train with another train
+				secondTrain += 1;
+
+				// If the count is more than the maxTrain then store the value in maxTrain
+				if(count > maxTrains) maxTrains = count;
+			} else {
+
+				// Decrement the count
+				count -= 1;
+
+				// Increment the first train, since it has left while comparing with the second one
+				firstTrain += 1;
+			}
+		} 
+
+		// return the max trains
+		return maxTrains;
 
 	}
 }
