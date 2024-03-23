@@ -102,9 +102,62 @@ public class CatchTheThieves {
 						
 	}
 
+	/**
+	 * Store the indexes of Police and thief in the separate arraylist
+	 * iterate through both the array list and find the difference between each value of them.
+	 * When the absolute difference(ignoring the sign) is less than 'k' 
+	 * then we can conclude that the thief is caught and increment the result, police and thief
+	 * if not then incrment the one having low value
+	 */
 	public static int greedy(char[] givenArray, int k) {
 
-		return 0;
+		
+		int length = givenArray.length;
+
+		int result = 0;
+
+		// Declare the lists
+		List<Integer> thieves = new ArrayList<>();
+		List<Integer> police = new ArrayList<>();
+
+		// Set element fetching from the given array list
+		for(int i=0; i<length; i++) {
+
+			if('P' == givenArray[i]) police.add(i);
+			else thieves.add(i);
+		}
+
+		// Initialize the indexes
+		int trackThieves=0, trackPolice=0;
+
+		// While both the indexes are less than the size of thier corrosponding array lists
+		while(trackThieves < thieves.size() && trackPolice < police.size()) {
+
+			// Absolute value ignores the sign of the integer
+			// So you can consider the difference as distance and compare with the given limit
+			if(Math.abs(thieves.get(trackThieves) - police.get(trackPolice)) <= k) {
+
+				// Increment the result, since theif is caught
+				result++;
+
+				// Incriment thieves
+				trackThieves++;
+
+				// Incriment police
+				trackPolice++;
+
+			} 
+
+			// Since the iteration should not stop for the uncaught thieves
+			// Incement the one with low value
+			// If thieves index is less then increment it
+			else if (thieves.get(trackThieves) < police.get(trackPolice)) trackThieves++;
+			
+			// if not increment the police
+			else trackPolice++;
+		}
+
+		return result;
 	}
 }
 
