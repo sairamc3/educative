@@ -14,7 +14,12 @@ public class Graph {
 		this.vertices = vertices;
 		this.adjacencyList = new LinkedList[this.vertices];
 
-		Arrays.fill(this.adjacencyList, new LinkedList());
+		for(int i=0; i<this.vertices; ++i) {
+
+			this.adjacencyList[i] = new LinkedList();
+		}
+
+		//Arrays.fill(this.adjacencyList, new LinkedList());
 	}
 
 	public void addEdge(int source, int destination) {
