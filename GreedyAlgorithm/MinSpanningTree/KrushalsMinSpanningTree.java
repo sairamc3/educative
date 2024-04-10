@@ -58,8 +58,16 @@ public class KrushalsMinSpanningTree {
 
 		i=0;
 
+		System.out.println("Before the loop");
+
+		System.out.println("i -> " + i + ", j -> " + j + ", graph.vertex ->" + graph.vertex);
+
+		System.out.println("In loop");
+
 		while(j < graph.vertex - 1) {
 
+
+			System.out.println("i -> " + i + ", j -> " + j + ", graph.vertex ->" + graph.vertex);
 			// Picking the smallest edge
 			Graph.Edge nextEdge = new Graph.Edge();
 
