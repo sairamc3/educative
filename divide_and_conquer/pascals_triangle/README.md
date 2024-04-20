@@ -4,5 +4,5 @@ It is a triangular array with binomial coefficients. To make the triangle we sta
 
 
 The explination about how the pascal's triangle is formed is well explained in the below link. 
-[https://en.wikipedia.org/wiki/Pascal's_triangle](Pascal's Triangle)
+[Pascal Triangle](https://en.wikipedia.org/wiki/Pascal's_triangle)
 
