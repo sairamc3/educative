@@ -8,7 +8,7 @@ Consider an array of
 ```
 {13,27,54,31,99,11}
 ```
-The peak elments are 54 and 99, they are greater than their nighbours. 
+The peak elments are `54` and `99`, they are greater than their nighbours. 
 
 In case the element is at the end of the array, we consider only the available member.
 
