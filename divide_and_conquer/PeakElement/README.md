@@ -1,11 +1,13 @@
 # Peak Element
 
-> ** A peak element in an array is the element which is greater than or equal to its nighbours. **
+> **A peak element in an array is the element which is greater than or equal to its nighbours.**
 
 Ex: 
 
-Consider an array of {13,27,54,31,99,11}
-
+Consider an array of 
+```
+{13,27,54,31,99,11}
+```
 The peak elments are 54 and 99, they are greater than their nighbours. 
 
 In case the element is at the end of the array, we consider only the available member.
