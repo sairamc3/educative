@@ -98,9 +98,28 @@ public class MaxSubArraySum {
 	}
 
 
+	/** 
+	 * <b> Best Approach </b>
+	 * Time Complexity: <b> O(n)</b>
+	 * It follows dynamic programming approach
+	 */
 	public static int kadanesAlgorithm(int[] given) {
 
-		return -1;
+
+		int currentMax = given[0];
+		int maxSoFar = given[0];
+
+		for(int i=1; i<given.length; i++) {
+
+			// Find the max of the current iterating element and the sum of currentMax adding to the current element
+			// it would exclude the current element if it is negative
+			// Only positive numbers can give value grater than tthe currentMax
+			currentMax = Math.max(given[i], currentMax + given[i]);
+
+			maxSoFar = Math.max(maxSoFar, currentMax);
+		}
+
+		return maxSoFar;
 	}
 
 }
