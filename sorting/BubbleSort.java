@@ -17,7 +17,7 @@ public class BubbleSort {
 		
 		int[] given = {5,4,1,0,5,95,4,-100,200,0};
 		
-		int[] sortedArray = selectionSort(given);
+		int[] sortedArray = bubbleSort(given);
 		
 		System.out.print("{");
 		for(int value: sortedArray){
@@ -26,7 +26,7 @@ public class BubbleSort {
 		System.out.print("}");
 	}
 
-	private static int[] selectionSort(int[] unsortedArray) {
+	private static int[] bubbleSort(int[] unsortedArray) {
 	
 		for(int i=0; i< unsortedArray.length - 1; i++) {
 
